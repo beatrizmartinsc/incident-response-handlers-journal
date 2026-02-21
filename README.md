@@ -1,45 +1,64 @@
 # Incident Response Handler’s Journal
 
-## Overview
+This repository contains documented security investigations conducted as part of my cybersecurity training and lab environments.  
 
-This repository contains documented investigation cases aligned with the NIST Incident Response Lifecycle. Each case demonstrates structured detection, analysis, and containment reasoning based on simulated or lab-based security events.
-
-The objective of this journal is to demonstrate investigative methodology, technical analysis, and professional documentation practices.
+The purpose of this journal is to demonstrate structured incident handling, analytical reasoning, and technical investigation skills aligned with the NIST Incident Response Lifecycle.
 
 ---
 
-## Investigation Framework
+## Investigation Methodology
 
-All cases follow structured analysis aligned with:
+All cases are documented following structured incident response principles:
 
-- NIST Incident Response Lifecycle
-- Detection & Analysis methodology
-- Containment recommendations
-- Lessons Learned documentation
+- Detection & Analysis  
+- Impact Assessment  
+- Containment Considerations  
+- Eradication & Recovery (when applicable)  
+- Lessons Learned  
+
+The focus is on demonstrating investigative thinking, evidence evaluation, and response decision-making.
 
 ---
 
 ## Documented Cases
 
-### 1. Ransomware Attack via Phishing
-Healthcare organization ransomware incident triggered by malicious email attachment.
-
-### 2. Network Traffic Analysis using Wireshark
-Packet capture review and traffic inspection within a virtual lab environment.
-
-### 3. Network Traffic Capture using tcpdump (Linux)
-Live traffic capture, filtering, and packet-level analysis in a Linux VM.
-
-### 4. Suspicious File Analysis (VirusTotal)
-Hash investigation, multi-vendor threat validation, and IoC classification using the Pyramid of Pain framework.
+| Date | Environment | Incident Type | Link |
+|------|------------|--------------|------|
+| 2025-11-29 | Simulated Healthcare | Google Cybersecurity Professional Certificate | Ransomware via Phishing | [View Case](./cases/ransomware-phishing-incident.md) |
+| 2025-12-01 | Windows VM Lab | Google Cybersecurity Professional Certificate | Network Traffic Analysis (Wireshark) | [View Case](./cases/wireshark-packet-analysis.md) |
+| 2025-12-01 | Linux VM Lab | Google Cybersecurity Professional Certificate | Packet Capture & Filtering (tcpdump) | [View Case](./cases/tcpdump-network-capture.md) |
+| 2025-12-01 | Simulated Financial Org | Google Cybersecurity Professional Certificate | Malicious File Investigation | [View Case](./cases/malicious-file-analysis.md) |
 
 ---
 
-## Tools Used
+## Tools & Technologies Used
 
-- Wireshark
+- Wireshark  
 - tcpdump
-- VirusTotal
-- SHA256 hashing
-- Linux command line
+- Linux Command Line   
 - Windows Virtual Machine
+- Network Traffic Filtering
+- Packet-Level Inspection  
+
+---
+
+## Skills Demonstrated
+
+- Incident documentation aligned with NIST  
+- Phishing and ransomware analysis  
+- Packet-level traffic inspection  
+- Log and network filtering techniques  
+- Indicator of Compromise (IoC) identification  
+- Structured reporting and containment planning  
+
+---
+
+## Purpose of this Repository
+
+This journal serves as part of my cybersecurity portfolio, showcasing hands-on analysis and practical application of incident response concepts in structured investigative scenarios.
+
+---
+
+*All investigations are based on simulated or controlled lab environments. No real-world sensitive data is included.*
+
+
