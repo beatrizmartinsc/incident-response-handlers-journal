@@ -13,21 +13,21 @@ A technical repository documenting end-to-end security operations, from **Govern
 
 ## 📂 Cybersecurity Projects
 
-### Incident Response[(Incident-Response)
+### Incident Response](./Incident-Response/)
 Analysis and mitigation of security threats using industry-standard frameworks.
 * **NIST Phase Analysis:** Detailed reports on Ransomware, Phishing, and Unauthorized Access based on Google Cybersecurity scenarios.
 * **Technical Labs:** Hands-on threat hunting and log analysis via TryHackMe.
 
-### 📝 02. Security Audits](./02-Security-Audits/)
+### Security Audits](./Security-Audits/)
 Evaluating organizational security posture through systematic risk assessments and control verification. Focus on identifying gaps and providing actionable remediation recommendations.
 
-### 🏛️ 03. GRC & NIST Framework Implementation](./03-GRC-NIST/)
+### GRC & NIST Framework Implementation](./GRC-NIST/)
 Direct application of the NIST CSF to business environments. Mapping security requirements to the **Identify, Protect, Detect, Respond, and Recover** functions.
 
-### 🔍 04. Vulnerability Management](./04-Vulnerability-Management/)
+### Vulnerability Management](./Vulnerability-Management/)
 The lifecycle of vulnerability identification and prioritization. Includes risk-based analysis to determine remediation urgency for critical assets.
 
-### 🐧 05. Linux Security & Hardening](./05-Linux-Security/)
+### Linux Security & Hardening](./Linux-Security/)
 Implementation of the **Principle of Least Privilege (PoLP)**. Projects focus on managing user permissions (`chmod`/`chown`), securing sensitive directories, and auditing system access.
 
 ---
