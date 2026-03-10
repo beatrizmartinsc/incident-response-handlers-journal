@@ -31,9 +31,9 @@ These observations guided the permission modifications in the following steps.
 ## Describe the Permissions String
 
 The file `project_t.txt` had the following permissions string:
-```
+
 -rw-rw-r--
-```
+
 
 This is a 10-character string that Linux uses to define access levels for different user categories and to identify the resource type:
 
@@ -51,16 +51,16 @@ This is a 10-character string that Linux uses to define access levels for differ
 After examining the baseline permissions, I found files that granted **write access to other users**, violating the organization's security policy. Write permissions for users outside the intended group increase the risk of unauthorized or accidental file modification.
 
 I used the `chmod` command to remove write access for other users:
-```bash
+bash
 chmod o-w <filename>
-```
+
 
 This preserved proper access for the file owner and group while restricting others.
 
 Additionally, I identified that `project_m.txt` granted **read access to the group**, even though it was intended to be restricted to the file owner only. I removed group read permissions:
-```bash
+bash
 chmod g-r project_m.txt
-```
+
 
 ![Figure 2: Updated permissions after removing write access for other users](images/fig2-chmod-other.png)
 
@@ -75,9 +75,9 @@ Hidden files are easily overlooked during routine audits, so they were also incl
 The hidden file `.project_x.txt` had been archived and should not have been modifiable by any user. I found it still had unnecessary **write permissions**.
 
 I adjusted the permissions to read-only for both user and group:
-```bash
+bash
 chmod u=r,g=r .project_x.txt
-```
+
 
 This ensured the integrity of the archived file by preventing any modifications.
 
@@ -90,9 +90,9 @@ This ensured the integrity of the archived file by preventing any modifications.
 As a final step, I reviewed the `drafts` subdirectory. The group had **execute permissions**, which allowed them to access the directory and its contents. Since this directory contained draft and potentially sensitive information, this level of access was inappropriate.
 
 I removed execute permissions for the group:
-```bash
+bash
 chmod g-x drafts
-```
+
 
 This ensured that only the file owner could access and navigate the directory.
 
@@ -103,7 +103,5 @@ This ensured that only the file owner could access and navigate the directory.
 ## Summary
 
 In this project, I conducted an in-depth review of file and directory permissions on a Linux system. I evaluated existing access settings and corrected them to align with the **least privilege principle**.
-
-By tightening access controls, the overall attack surface was reduced — minimizing the risk of unauthorized access or modification. This work demonstrates how proactive permission management plays a critical role in maintaining security within an enterprise environment.
 
 By tightening access controls, the overall attack surface was reduced — minimizing the risk of unauthorized access or modification. This work demonstrates how proactive permission management plays a critical role in maintaining security within an enterprise environment.
