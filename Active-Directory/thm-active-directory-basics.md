@@ -109,6 +109,7 @@ This is expected behaviour. By default, OUs in Active Directory have **accidenta
 3. Unchecked **"Protect object from accidental deletion"**
 
 ![Disabling accidental deletion protection](images/04-disable-deletion-protection.png)
+
 *Object tab showing the accidental deletion protection checkbox — unchecking this allows the OU to be deleted*
 
 4. Clicked Apply → OK, then right-clicked the OU again → Delete → confirmed deletion
@@ -116,6 +117,7 @@ This is expected behaviour. By default, OUs in Active Directory have **accidenta
 The OU and all objects inside it (including user **Bob**) were permanently removed.
 
 ![Research and Development OU successfully deleted](images/05-research-ou-deleted.png)
+
 *THM OU now shows only four department OUs — Research and Development has been removed*
 
 ---
@@ -125,9 +127,11 @@ The OU and all objects inside it (including user **Bob**) were permanently remov
 After deleting the extra OU, reviewed the remaining department OUs against the provided organisational chart. Identified users that no longer existed in the business and removed them from the Sales OU.
 
 ![Deleting user Robert from Sales OU](images/06-delete-user-robert.png)
+
 *Confirmation dialog before deleting user Robert from the Sales OU*
 
 ![Deleting user Christine from Sales OU](images/07-delete-user-christine.png)
+
 *Confirmation dialog before deleting user Christine from the Sales OU*
 
 Both deletions required confirmation via an Active Directory Domain Services warning dialog.
@@ -143,16 +147,19 @@ To follow the principle of least privilege, delegated password reset permissions
 1. Right-clicked the Sales OU → **Delegate Control**
 
 ![Right-clicking Sales OU to open Delegate Control](images/08-delegate-control-sales.png)
+
 *Initiating the Delegation of Control Wizard on the Sales OU*
 
 2. In the Delegation of Control Wizard, clicked **Add**, typed "phillip", and used **Check Names** to resolve the account
 
 ![Phillip resolved via Check Names](images/09-phillip-resolved.png)
+
 *Phillip's account resolved to phillip@thm.local using the Check Names function*
 
 3. Selected the task: **"Reset user passwords and force password change at next logon"**
 
 ![Password reset task selected in delegation wizard](images/10-delegation-task-selected.png)
+
 *Granting Phillip only the password reset permission — no other administrative rights*
 
 4. Completed the wizard
@@ -176,9 +183,11 @@ Set-ADUser -ChangePasswordAtLogon $true -Identity sophie -Verbose
 ```
 
 ![PowerShell password reset — Set-ADAccountPassword](images/11-powershell-password-reset.png)
+
 *Running Set-ADAccountPassword as Phillip — verbose output confirms the operation was applied to Sophie's account*
 
 ![PowerShell force password change](images/12-powershell-force-change.png)
+
 *Running Set-ADUser with -ChangePasswordAtLogon — both commands completed successfully*
 
 ---
@@ -188,16 +197,19 @@ Set-ADUser -ChangePasswordAtLogon $true -Identity sophie -Verbose
 Connected via RDP as `THM\sophie` using the newly set password.
 
 ![RDP login as Sophie](images/13-rdp-login-sophie.png)
+
 *Connecting to the domain via RDP using THM\sophie credentials*
 
 On first login, was immediately prompted:
 
 ![Force password change prompt](images/14-sophie-password-change-prompt.png)
+
 *"The user's password must be changed before signing in" — the ChangePasswordAtLogon flag is working correctly*
 
 After setting a new password, received confirmation:
 
 ![Password changed successfully](images/15-sophie-password-changed.png)
+
 *"Your password has been changed" — delegation and forced reset workflow verified end-to-end*
 
 This confirms the `ChangePasswordAtLogon` flag was correctly applied via PowerShell. This is a standard helpdesk security practice — the helpdesk sets a temporary password, and the user is forced to set their own immediately.
@@ -209,6 +221,7 @@ This confirms the `ChangePasswordAtLogon` flag was correctly applied via PowerSh
 Opened the default **Computers** container and reviewed the 10 machine objects present.
 
 ![Default Computers container with all machines](images/16-computers-container.png)
+
 *Default Computers container showing all 10 machines before reorganisation — laptops (LPT), desktops (PC), and servers (SRV/SVR) mixed together*
 
 | Machine | Type |
@@ -220,14 +233,17 @@ Opened the default **Computers** container and reviewed the 10 machine objects p
 Created two new OUs directly under the `thm.local` domain root by right-clicking the domain → New → Organizational Unit:
 
 ![Creating a new OU at domain root](images/17-new-ou-creation.png)
+
 *Creating a new Organisational Unit directly under thm.local to separate workstations from servers*
 
 Moved all 7 workstations to the Workstations OU and all 3 servers to the Servers OU.
 
 ![Workstations OU populated](images/18-workstations-ou.png)
+
 *Workstations OU containing 7 machines — 3 laptops and 4 desktop PCs*
 
 ![Servers OU populated](images/19-servers-ou.png)
+
 *Servers OU containing 3 servers — SRV-DB01, SRV-DB02, and SVR-WEB01*
 
 This separation allows different GPOs to be applied to each category independently.
