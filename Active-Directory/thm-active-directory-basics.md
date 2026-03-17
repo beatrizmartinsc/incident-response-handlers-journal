@@ -9,7 +9,7 @@
 
 This lab introduces the core concepts and administrative tasks involved in managing a Windows Active Directory (AD) environment. Working as a simulated IT administrator for the fictional company **THM Inc.**, I performed hands-on tasks including reorganising Organisational Units (OUs), managing user accounts, delegating administrative control, configuring Group Policy Objects (GPOs), and exploring authentication protocols used in Windows domains.
 
-Active Directory is foundational knowledge for both IT support and cybersecurity roles. Understanding how AD is structured — and how it can be misconfigured — is directly relevant to SOC analysis, where AD-related attacks such as privilege escalation, pass-the-hash, and Kerberoasting are commonly encountered.
+Active Directory is foundational knowledge for both IT support and cybersecurity roles. Understanding how AD is structured, and how it can be misconfigured, is directly relevant to SOC analysis, where AD-related attacks such as privilege escalation, pass-the-hash, and Kerberoasting are commonly encountered.
 
 ---
 
@@ -41,10 +41,10 @@ Active Directory is foundational knowledge for both IT support and cybersecurity
 ## Key Concepts
 
 ### Windows Domain
-A Windows domain is a centralised network administration model where users, computers, and policies are managed from a single point — the **Domain Controller (DC)**. Instead of configuring each machine individually, an administrator can manage the entire network from one place using **Active Directory Domain Services (AD DS)**.
+A Windows domain is a centralised network administration model where users, computers, and policies are managed from a single point, the **Domain Controller (DC)**. Instead of configuring each machine individually, an administrator can manage the entire network from one place using **Active Directory Domain Services (AD DS)**.
 
 ### Organisational Units (OUs)
-OUs are container objects inside Active Directory used to organise users, computers, and groups into logical groupings — typically mirroring a company's department structure. OUs are primarily used to **apply Group Policy**. A user can only belong to one OU at a time.
+OUs are container objects inside Active Directory used to organise users, computers, and groups into logical groupings, typically mirroring a company's department structure. OUs are primarily used to **apply Group Policy**. A user can only belong to one OU at a time.
 
 ### Security Groups vs OUs
 These are often confused but serve different purposes:
@@ -54,10 +54,10 @@ These are often confused but serve different purposes:
 A user can belong to multiple security groups but only one OU.
 
 ### Delegation of Control
-Delegation allows an administrator to grant a specific user limited administrative privileges over an OU — without giving them full Domain Admin rights. A common real-world use case is allowing helpdesk staff to reset passwords without access to sensitive AD settings.
+Delegation allows an administrator to grant a specific user limited administrative privileges over an OU, without giving them full Domain Admin rights. A common real-world use case is allowing helpdesk staff to reset passwords without access to sensitive AD settings.
 
 ### Group Policy Objects (GPOs)
-GPOs are collections of configuration settings that can be applied to OUs, domains, or sites. They are used to enforce security baselines across the network — such as password complexity rules, screen lock timeouts, and software restrictions. GPOs are distributed via a network share called **SYSVOL**.
+GPOs are collections of configuration settings that can be applied to OUs, domains, or sites. They are used to enforce security baselines across the network, such as password complexity rules, screen lock timeouts, and software restrictions. GPOs are distributed via a network share called **SYSVOL**.
 
 ### Kerberos Authentication
 Kerberos is the default authentication protocol in modern Windows domains. It uses a **ticket-based system**:
@@ -65,10 +65,10 @@ Kerberos is the default authentication protocol in modern Windows domains. It us
 2. The TGT is used to request **Ticket Granting Service (TGS)** tickets for specific services
 3. The TGS is presented to the target service to establish a session
 
-Passwords are never transmitted over the network — only encrypted tickets are exchanged. This is relevant to SOC analysts because attacks like **Kerberoasting** and **Pass-the-Ticket** target this system.
+Passwords are never transmitted over the network, only encrypted tickets are exchanged. This is relevant to SOC analysts because attacks like **Kerberoasting** and **Pass-the-Ticket** target this system.
 
 ### NetNTLM Authentication
-NetNTLM is a legacy challenge-response protocol kept for backwards compatibility. The user's password hash is used to respond to a server-generated challenge — the password itself is never sent over the network. Modern Windows domains use Kerberos by default; NetNTLM is a fallback.
+NetNTLM is a legacy challenge-response protocol kept for backwards compatibility. The user's password hash is used to respond to a server-generated challenge, the password itself is never sent over the network. Modern Windows domains use Kerberos by default; NetNTLM is a fallback.
 
 ---
 
@@ -87,11 +87,13 @@ Compared the existing structure against the provided organisational chart and id
 Attempted to delete the **Research and Development** OU by right-clicking and selecting Delete.
 
 ![First delete attempt on Research OU](images/01-ou-delete-attempt.png)
+
 *Right-clicking the Research and Development OU to attempt deletion*
 
 The following error was returned immediately:
 
 ![Accidental deletion protection error](images/02-ou-delete-error.png)
+
 *Default accidental deletion protection blocking the OU removal — expected behaviour*
 
 This is expected behaviour. By default, OUs in Active Directory have **accidental deletion protection** enabled, which prevents them from being removed without first explicitly disabling the protection. This is a safeguard against administrator error.
